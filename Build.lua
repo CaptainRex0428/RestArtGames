@@ -1,7 +1,7 @@
 include "Directory.lua"
 include "Dependencies.lua"
 
-workspace "NRenderGL"
+workspace "RestArtGames"
 	architecture "x64"
 	startproject "Render"
 	configurations{
@@ -40,3 +40,14 @@ group "Dependencies/Examples"
 	include "Dependencies/SDL_image_Example.lua"
 	include "Dependencies/dlg_example.lua"
 	include "Dependencies/SDL_ttf_Example.lua"
+
+group "Games"
+   include "Games/Pong/Pong.lua"
+   include "Games/SpriteShip/SpriteShip.lua"
+   
+group "Games/Framework"
+   include "Games/Game/Game.lua"
+   include "Core/Core.lua"
+
+group ""
+   include "App/App.lua"

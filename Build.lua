@@ -11,13 +11,13 @@ workspace "NRenderGL"
 	}
 
     filter "system:windows"
-    buildoptions { "/EHsc", "/Zc:preprocessor", "/Zc:__cplusplus" }
+    buildoptions { "/EHsc", "/Zc:preprocessor", "/Zc:__cplusplus", "/utf-8" }
 	
 group "Render"
 	include "Render/Render.lua"
 
 group "Extend"
-	include "Extend/ScrewExtend/ScrewExtend.lua"
+	include "Extend/MultiExtend/MultiExtend.lua"
 	
 group "Dependencies"
 	include "Dependencies/SDL.lua"

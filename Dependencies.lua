@@ -21,7 +21,7 @@ DepIncludeDir["linmath"] = "%{wks.location}/Dependencies/linmath"
 
 ProjIncludeDir={}
 
-ProjIncludeDir["ScrewExtend"] = "%{wks.location}/Extend/ScrewExtend/include"
+ProjIncludeDir["MultiExtend"] = "%{wks.location}/Extend/MultiExtend/include"
 
 LibDirectories = {}
 LibDirectories["SDL_ttf"] =  LibDir.."/SDL_ttf"

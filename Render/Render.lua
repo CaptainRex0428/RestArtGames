@@ -18,7 +18,7 @@ project "Render"
         "%{DepIncludeDir.glfw}",
         "%{DepIncludeDir.glew}",
         "%{DepIncludeDir.linmath}",
-        "%{ProjIncludeDir.ScrewExtend}"
+        "%{ProjIncludeDir.MultiExtend}"
     }
 
 	links
@@ -29,7 +29,7 @@ project "Render"
         "glfw",
         "glad",
         "glew",
-        "ScrewExtend",
+        "MultiExtend",
         "OpenGL32.lib",
         "User32.lib",
         "Gdi32.lib",

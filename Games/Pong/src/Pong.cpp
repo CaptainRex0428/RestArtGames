@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "Math/Math.h"
+
 int SDL_SetRenderDrawColor(SDL_Renderer* render, Color& color)
 {
 	return SDL_SetRenderDrawColor(render, color[R], color[G], color[B], color[A]);
@@ -176,7 +178,7 @@ void Pong::UpdateGame()
 	m_delta = (ticks - m_ticksCount)/1000.0f;
 	m_ticksCount = ticks;
 
-	Math::limit_min(m_delta, 0.05f);
+	MultiExtendMath::limit_min(m_delta, 0.05f);
 
 #ifdef PongDebug
 	SDL_Log("Delta:%.3f", m_delta);

@@ -12,7 +12,6 @@ project "App"
       "src",
       "include",
 
-      "%{DepIncludeDir.core}",
       "%{DepIncludeDir.imgui}",
       "%{DepIncludeDir.Pong}",
       "%{DepIncludeDir.SDL}"
@@ -22,7 +21,6 @@ project "App"
 
    links
    {
-      "Core",
       "ImGui",
       "Pong",
       "SDL",

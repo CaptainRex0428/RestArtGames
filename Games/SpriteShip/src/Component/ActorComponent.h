@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Component.h"
-#include "Vector/Vector.h"
+#include "Math/Vector.h"
 
 #include <iostream>
 #include <variant>

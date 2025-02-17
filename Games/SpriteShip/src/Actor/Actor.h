@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "Component/ActorComponent.h"
-#include "Vector/Vector.h"
+#include "Math/Vector.h"
 
 #define DefaultActorTypeName "BaseActor"
 #define DefaultActorUpdateOrder 100

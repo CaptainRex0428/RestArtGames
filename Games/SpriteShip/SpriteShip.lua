@@ -11,14 +11,14 @@ project "SpriteShip"
      "src",
      "include",
 
-     "%{DepIncludeDir.core}",
+     "%{ProjIncludeDir.MultiExtend}",
      "%{DepIncludeDir.SDL}",
      "%{DepIncludeDir.SDL_image}"
    }
 
    links
    {
-     "Core",
+     "MultiExtend",
      "SDL",
      "SDL_main",
      "SDL_image"

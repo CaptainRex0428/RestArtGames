@@ -5,7 +5,7 @@
 #include "SDL.h"
 
 #include "Math/Math.h"
-#include "Color/Color.h"
+#include "Math/Color.h"
 
 #include "GameOBJECT.h"
 

@@ -11,14 +11,12 @@ project "Pong"
      "src",
      "include",
 
-     "%{DepIncludeDir.core}",
      "%{DepIncludeDir.SDL}",
-     "%{DepIncludeDir.MultiExtend}"
+     "%{ProjIncludeDir.MultiExtend}"
    }
 
    links
    {
-     "Core",
      "SDL",
      "SDL_main",
      "MultiExtend"

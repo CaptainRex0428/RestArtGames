@@ -44,10 +44,6 @@ group "Dependencies/Examples"
 group "Games"
    include "Games/Pong/Pong.lua"
    include "Games/SpriteShip/SpriteShip.lua"
-   
-group "Games/Framework"
-   include "Games/Game/Game.lua"
-   include "Core/Core.lua"
 
 group ""
    include "App/App.lua"

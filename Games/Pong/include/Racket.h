@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Vector/Vector.h"
-#include "Color/Color.h"
+#include "Math/Vector.h"
+#include "Math/Color.h"
 
 #include "SDL.h"
 

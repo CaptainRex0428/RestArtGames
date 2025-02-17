@@ -145,7 +145,7 @@ void SpriteShip::ProcessInput()
 		Vector3 location = player->GetPosition();
 		float y = location.y - ShipSpeed * m_delta;
 
-		Math::limit_min(y,0);
+		MultiExtendMath::limit_min(y,0);
 
 		player->SetPosition(Vector3(location.x, y, location.z));
 	}
@@ -155,7 +155,7 @@ void SpriteShip::ProcessInput()
 		Vector3 location = player->GetPosition();
 		float y = location.y + ShipSpeed * m_delta;
 
-		Math::limit_max(y, (float)m_resolution_h);
+		MultiExtendMath::limit_max(y, (float)m_resolution_h);
 
 		player->SetPosition(Vector3(location.x, y, location.z));
 	}
@@ -165,7 +165,7 @@ void SpriteShip::ProcessInput()
 		Vector3 location = player->GetPosition();
 		float x = location.x - ShipSpeed * m_delta;
 
-		Math::limit_min(x, 0);
+		MultiExtendMath::limit_min(x, 0);
 
 		player->SetPosition(Vector3(x, location.y, location.z));
 	}
@@ -175,7 +175,7 @@ void SpriteShip::ProcessInput()
 		Vector3 location = player->GetPosition();
 		float x = location.x + ShipSpeed * m_delta;
 
-		Math::limit_max(x, (float)m_resolution_w);
+		MultiExtendMath::limit_max(x, (float)m_resolution_w);
 
 		player->SetPosition(Vector3(x, location.y, location.z));
 	}
@@ -191,7 +191,7 @@ void SpriteShip::UpdateGame()
 	m_delta = (ticks - m_tickcount) / 1000.0f;
 	m_tickcount = ticks;
 
-	Math::limit_min(m_delta, 0.05f);
+	MultiExtendMath::limit_min(m_delta, 0.05f);
 
 	GameOBJECT::Update(m_delta);
 

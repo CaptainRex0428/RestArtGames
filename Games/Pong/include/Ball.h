@@ -1,9 +1,9 @@
 #pragma once
 
 #include "SDL.h"
-#include "Vector/Vector.h"
+#include "Math/Vector.h"
 #include "Racket.h"
-#include "Color/Color.h"
+#include "Math/Color.h"
 
 #define BallDebug
 

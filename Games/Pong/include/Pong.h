@@ -4,7 +4,7 @@
 
 #include "SDL.h"
 
-#include "Color/Color.h"
+#include "Math/Color.h"
 #include "Racket.h"
 #include "Ball.h"
 

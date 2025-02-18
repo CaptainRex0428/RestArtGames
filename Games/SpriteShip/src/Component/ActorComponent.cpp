@@ -289,8 +289,6 @@ void ActorComponent::ClearParentActorComponent()
 
 void ActorComponent::Update(float delta)
 {
-	// update self
-
 	for (auto child: m_child_actor_components)
 	{
 		child->Update(delta);
@@ -300,13 +298,13 @@ void ActorComponent::Update(float delta)
 	{
 		component->Update(delta);
 	}
-	
-	return;
+
+	Component::Update(delta);
 }
 
 void ActorComponent::Draw()
 {
-	// draw self
+	
 	
 	for (auto component : m_components)
 	{
@@ -317,4 +315,6 @@ void ActorComponent::Draw()
 	{
 		child->Draw();
 	}
+
+	Component::Draw();
 }

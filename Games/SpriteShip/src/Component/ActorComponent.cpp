@@ -14,7 +14,7 @@ ActorComponent::ActorComponent(
 	m_scale(scale),
 	m_rotation(rotation)
 {
-	InitType(BaseActorComponentTypeName);
+	SetTag(BaseActorComponentTypeName);
 }
 
 ActorComponent::~ActorComponent()

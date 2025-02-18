@@ -33,7 +33,7 @@ public:
 	void SetComponentState(int state);
 
 protected:
-	virtual void InitType(const char * type);
+	virtual void SetTag(const char * type);
 
 protected:
 	int m_updateorder;

@@ -25,7 +25,7 @@ SpriteComponent::SpriteComponent(
 		}
 	}
 
-	InitType(BaseSpriteComponentTypeName);
+	SetTag(BaseSpriteComponentTypeName);
 }
 
 SpriteComponent::~SpriteComponent()

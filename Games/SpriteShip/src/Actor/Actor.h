@@ -68,7 +68,7 @@ public:
 	const Vector3 GetRotationResult();
 
 protected:
-	virtual void InitType(const char* tag);
+	virtual void SetTag(const char* tag);
 	void ClearParentActor();
 
 protected:
@@ -82,7 +82,7 @@ protected:
 
 
 private:
-	int m_updateoreder;
+	int m_updateorder;
 
 	char* m_actor_tag;
 

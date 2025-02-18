@@ -7,7 +7,7 @@
 Component::Component(SDL_Renderer * renderer, const char* tag, int updateorder)
 	:m_updateorder(updateorder),m_component_state(CP_Valid | CP_Display),m_renderer(renderer)
 {
-	InitType(BaseComponentTypeName);
+	SetTag(BaseComponentTypeName);
 
 	size_t len = std::strlen(tag);
 	m_component_tag = new char[len];
@@ -39,7 +39,7 @@ const int& Component::GetComponentState()
 	return m_component_state;
 }
 
-void Component::InitType(const char * type)
+void Component::SetTag(const char * type)
 {
 	size_t len = std::strlen(type);
 	m_component_type = new char[len];

@@ -13,7 +13,7 @@ AnimSpriteComponent::AnimSpriteComponent(
 	m_anim_fps(30),
 	m_current_frame(0)
 {
-	InitType(BaseAnimSpriteComponentTypeName);
+	SetTag(BaseAnimSpriteComponentTypeName);
 }
 
 AnimSpriteComponent::~AnimSpriteComponent()

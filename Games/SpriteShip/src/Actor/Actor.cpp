@@ -1,3 +1,4 @@
+#include "Actor.h"
 #include "Actor/Actor.h"
 
 #include "GameOBJECT.h"
@@ -11,7 +12,7 @@ Actor::Actor(SDL_Renderer* renderer,
 	:
 	m_state(ATR_Alive),
 	m_parent_actor(nullptr),
-	m_updateoreder(updateorder),
+	m_updateorder(updateorder),
 	m_renderer(renderer),
 	m_position(position),
 	m_scale(scale),
@@ -21,7 +22,7 @@ Actor::Actor(SDL_Renderer* renderer,
 	m_actor_tag = new char[len];
 	memcpy(m_actor_tag, tag, len);
 
-	InitType(DefaultActorTypeName);
+	SetTag(DefaultActorTypeName);
 
 	GameOBJECT::AddActor(this);
 
@@ -45,7 +46,7 @@ Actor::~Actor()
 	GameOBJECT::RemoveActor(this);
 }
 
-void Actor::InitType(const char* type)
+void Actor::SetTag(const char* type)
 {
 	size_t len = std::strlen(type);
 	m_actor_type = new char[len];
@@ -332,7 +333,7 @@ const char* Actor::GetTag()
 
 const int& Actor::GetUpdateOrder()
 {
-	return m_updateoreder;
+	return m_updateorder;
 }
 
 void Actor::Update(float delta)

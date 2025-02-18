@@ -1,6 +1,8 @@
 #include "Component/SpriteComponent.h"
 
-#include "GameOBJECT.h"
+#include "GameOBJECT.h"]
+
+#include "SDL.h"
 
 SpriteComponent::SpriteComponent(
 	SDL_Renderer* renderer,

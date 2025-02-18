@@ -2,6 +2,8 @@
 
 #include "GameOBJECT.h"
 
+#include "SDL.h"
+
 BackGround::BackGround(SDL_Renderer* renderer)
 	:Actor(renderer, "BackGround")
 {

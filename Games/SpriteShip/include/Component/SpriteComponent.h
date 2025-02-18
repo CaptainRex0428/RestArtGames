@@ -14,10 +14,10 @@ public:
 		Vector3 postion = Vector3(0.0f, 0.0f, 0.0f),
 		Vector3 scale = Vector3(1.0f, 1.0f, 1.0f),
 		Vector3 rotation = Vector3(0.0f, 0.0f, 0.0f),
-		int updateorder = DefaultUpdateOrder);
+		int updateorder = DEFAULT_UPDATEORDER);
 	virtual ~SpriteComponent();
 
-	virtual void Update(float delta);
+	virtual void Update(float delta) override;
 	virtual void Draw() override;
 	virtual void SetSingleTexture(SDL_Texture* texture);
 

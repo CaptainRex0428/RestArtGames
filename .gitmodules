@@ -38,3 +38,6 @@
 [submodule "Dependencies/spdlog"]
 	path = Dependencies/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "Extension/MultiExtend"]
+	path = Extension/MultiExtend
+	url = https://github.com/CaptainRex0428/MultiExtend.git

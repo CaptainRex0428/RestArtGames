@@ -1,35 +1,43 @@
+
+
 DepIncludeDir={}
 
-DepIncludeDir["SDL"] = "%{wks.location}/Dependencies/SDL/include"
-DepIncludeDir["SDL_image"] = "%{wks.location}/Dependencies/SDL_image/include"
+DepIncludeDir["SDL"] = PreRoot.MultiExtendDependenciesRoot.."/SDL/include"
+DepIncludeDir["SDL_image"] = PreRoot.MultiExtendDependenciesRoot.."/SDL_image/include"
 
-DepIncludeDir["glad"] = "%{wks.location}/Dependencies/glad/include"
-DepIncludeDir["glfw"] = "%{wks.location}/Dependencies/glfw/include"
-DepIncludeDir["glew"] = "%{wks.location}/Dependencies/glew/include/GL"
-DepIncludeDir["imgui"] = "%{wks.location}/Dependencies/imgui"
+DepIncludeDir["glad"] = PreRoot.MultiExtendDependenciesRoot.."/glad/include"
+DepIncludeDir["glfw"] = PreRoot.MultiExtendDependenciesRoot.."/glfw/include"
+DepIncludeDir["glew"] = PreRoot.MultiExtendDependenciesRoot.."/glew/include/GL"
+DepIncludeDir["imgui"] = PreRoot.MultiExtendDependenciesRoot.."/imgui"
+ 
+DepIncludeDir["zlib"] = PreRoot.MultiExtendDependenciesRoot.."/zlib"
+DepIncludeDir["libpng"] = PreRoot.MultiExtendDependenciesRoot.."/libpng"
 
+DepIncludeDir["dlg"] = PreRoot.MultiExtendDependenciesRoot.."/dlg/include"
+DepIncludeDir["freetype"] = PreRoot.MultiExtendDependenciesRoot.."/freetype/include"
+DepIncludeDir["harfbuzz"] = PreRoot.MultiExtendDependenciesRoot.."/harfbuzz/src"
+DepIncludeDir["SDL_ttf"] = PreRoot.MultiExtendDependenciesRoot.."/SDL_ttf"
 
+DepIncludeDir["spdlog"] = PreRoot.MultiExtendDependenciesRoot.."/spdlog/include"
 
-DepIncludeDir["zlib"] = "%{wks.location}/Dependencies/zlib"
-DepIncludeDir["libpng"] = "%{wks.location}/Dependencies/libpng"
+DepIncludeDir["linmath"] = PreRoot.MultiExtendDependenciesRoot.."/linmath"
 
-DepIncludeDir["dlg"] = "%{wks.location}/Dependencies/dlg/include"
-DepIncludeDir["freetype"] = "%{wks.location}/Dependencies/freetype/include"
-DepIncludeDir["harfbuzz"] = "%{wks.location}/Dependencies/harfbuzz/src"
-DepIncludeDir["SDL_ttf"] = "%{wks.location}/Dependencies/SDL_ttf"
+DepIncludeDir["lua"] = PreRoot.MultiExtendDependenciesRoot.."/lua"
 
-DepIncludeDir["spdlog"] = "%{wks.location}/Dependencies/spdlog/include"
-
-DepIncludeDir["linmath"] = "%{wks.location}/Dependencies/linmath"
-
-ProjIncludeDir={}
-
-ProjIncludeDir["MultiExtend"] = "%{wks.location}/Extend/MultiExtend/include"
+DepIncludeDir["luacrypto"] = PreRoot.MultiExtendDependenciesRoot.."/luacrypto/src"
+DepIncludeDir["openssl"] = PreRoot.MultiExtendDependenciesRoot.."/openssl/include"
+DepIncludeDir["cryptopp"] = PreRoot.MultiExtendDependenciesRoot.."/cryptopp"
 
 LibDirectories = {}
+LibDirectories["openssl"] =  PreRoot.MultiExtendDependenciesRoot.."/openssl/lib"
 LibDirectories["SDL_ttf"] =  LibDir.."/SDL_ttf"
 LibDirectories["glfw"] =  LibDir.."/glfw"
 LibDirectories["glad"] =  LibDir.."/glad"
 LibDirectories["glew"] =  LibDir.."/glew"
+LibDirectories["lua"] =  LibDir.."/lua"
 
 Library = {}
+
+ProjIncludeDir={}
+ProjIncludeDir["MultiExtend"] = PreRoot.ExtensionRoot.."/MultiExtend/include"
+

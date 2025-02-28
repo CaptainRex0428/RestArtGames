@@ -16,30 +16,37 @@ workspace "RestArtGames"
 group "Render"
 	include "Render/Render.lua"
 
-group "Extend"
-	include "Extend/MultiExtend/MultiExtend.lua"
+group "Extension"
+	include(path.join(PreRoot.ExtensionRoot, "MultiExtend/MultiExtend.lua"))
 	
 group "Dependencies"
-	include "Dependencies/SDL.lua"
-	include "Dependencies/SDL_image.lua"
-	include "Dependencies/glad.lua"
-	include "Dependencies/glfw.lua"
-	include "Dependencies/glew.lua"
-	include "Dependencies/imgui.lua"
-	include "Dependencies/libpng.lua"
-	include "Dependencies/zlib.lua"
-
-	include "Dependencies/dlg.lua"
-	include "Dependencies/freetype.lua"
-	include "Dependencies/harfbuzz.lua"
-	include "Dependencies/SDL_ttf.lua"
-
-	include "Dependencies/spdlog.lua"
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "lua.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "dlg.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "freetype.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "harfbuzz.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "spdlog.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "imgui.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "libpng.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "zlib.lua"))
+	
+group "Dependencies/SDL"
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "SDL.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "SDL_image.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "SDL_ttf.lua"))
+	
+group "Dependencies/crypto"
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "cryptopp.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "luacrypto.lua"))
+	
+group "Dependencies/OpenGL"
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "glad.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "glfw.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "glew.lua"))
 	
 group "Dependencies/Examples"
-	include "Dependencies/SDL_image_Example.lua"
-	include "Dependencies/dlg_example.lua"
-	include "Dependencies/SDL_ttf_Example.lua"
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "SDL_image_Example.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "dlg_example.lua"))
+	include(path.join(PreRoot.MultiExtendDependenciesRoot, "SDL_ttf_Example.lua"))
 
 group "Games"
    include "Games/Pong/Pong.lua"
@@ -47,3 +54,4 @@ group "Games"
 
 group ""
    include "App/App.lua"
+

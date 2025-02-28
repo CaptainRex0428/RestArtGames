@@ -11,6 +11,8 @@
 #define PongNDebug
 #define KeyNDebug
 
+using namespace MultiExtend;
+
 class Pong
 {
 public:

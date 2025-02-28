@@ -10,6 +10,8 @@
 #define DefaultRacketSpeed 200
 #define DefaultRacketColor Color(1.0f,1.0f,1.0f,1.0f)
 
+using namespace MultiExtend;
+
 class Racket
 {
 public:

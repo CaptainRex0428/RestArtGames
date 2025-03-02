@@ -178,7 +178,7 @@ void Pong::UpdateGame()
 	m_delta = (ticks - m_ticksCount)/1000.0f;
 	m_ticksCount = ticks;
 
-	MultiExtendMath::limit_min(m_delta, 0.05f);
+	MultiExtend::Math::limit_min(m_delta, 0.05f);
 
 #ifdef PongDebug
 	SDL_Log("Delta:%.3f", m_delta);

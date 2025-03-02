@@ -4,7 +4,7 @@
 
 #include "Component/BKGComponent.h"
 
-class BackGround : Actor
+class BackGround : MultiExtend::Actor
 {
 public:
 	BackGround(SDL_Renderer* renderer);

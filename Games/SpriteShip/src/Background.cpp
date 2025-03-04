@@ -5,7 +5,7 @@
 #include "SDL.h"
 
 BackGround::BackGround(SDL_Renderer* renderer)
-	:Actor(renderer, "BackGround")
+	:Actor("BackGround")
 {
 	Vector2 Screensize(1280.0f, 762.0f);
 

@@ -10,8 +10,8 @@ class GameOBJECT
 {
 public:
 
-	static void AddActor(Actor * actor);
-	static void RemoveActor(Actor* actor);
+	static void AddActor(MultiExtend::Actor * actor);
+	static void RemoveActor(MultiExtend::Actor* actor);
 
 	static SDL_Texture* LoadTexture(SDL_Renderer * renderer,const char* filepath);
 

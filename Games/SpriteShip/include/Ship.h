@@ -3,6 +3,7 @@
 #include "Actor/Actor.h"
 
 #include "Component/AnimSpriteComponent.h"
+#include "SDL.h"
 
 #define DefaultShipTypeName "BaseShip"
 

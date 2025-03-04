@@ -4,6 +4,8 @@
 
 #include "Component/AnimSpriteComponent.h"
 
+#include "MultiExtend.h"
+
 #include <iostream>
 
 int SDL_SetRenderDrawColor(SDL_Renderer* render, Color& color)
@@ -51,9 +53,8 @@ SpriteShip& SpriteShip::Get()
 
 bool SpriteShip::Initialize()
 {
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0) 
+	if (!MultiExtend::Init())
 	{
-		SDL_Log("SDL init error:%s",SDL_GetError());
 		return false;
 	};
 
@@ -145,7 +146,7 @@ void SpriteShip::ProcessInput()
 		Vector3 location = player->GetPosition();
 		float y = location.y - ShipSpeed * m_delta;
 
-		MultiExtendMath::limit_min(y,0);
+		MultiExtend::Math::limit_min(y,0);
 
 		player->SetPosition(Vector3(location.x, y, location.z));
 	}
@@ -155,7 +156,7 @@ void SpriteShip::ProcessInput()
 		Vector3 location = player->GetPosition();
 		float y = location.y + ShipSpeed * m_delta;
 
-		MultiExtendMath::limit_max(y, (float)m_resolution_h);
+		MultiExtend::Math::limit_max(y, (float)m_resolution_h);
 
 		player->SetPosition(Vector3(location.x, y, location.z));
 	}
@@ -165,7 +166,7 @@ void SpriteShip::ProcessInput()
 		Vector3 location = player->GetPosition();
 		float x = location.x - ShipSpeed * m_delta;
 
-		MultiExtendMath::limit_min(x, 0);
+		MultiExtend::Math::limit_min(x, 0);
 
 		player->SetPosition(Vector3(x, location.y, location.z));
 	}
@@ -175,7 +176,7 @@ void SpriteShip::ProcessInput()
 		Vector3 location = player->GetPosition();
 		float x = location.x + ShipSpeed * m_delta;
 
-		MultiExtendMath::limit_max(x, (float)m_resolution_w);
+		MultiExtend::Math::limit_max(x, (float)m_resolution_w);
 
 		player->SetPosition(Vector3(x, location.y, location.z));
 	}
@@ -191,7 +192,7 @@ void SpriteShip::UpdateGame()
 	m_delta = (ticks - m_tickcount) / 1000.0f;
 	m_tickcount = ticks;
 
-	MultiExtendMath::limit_min(m_delta, 0.05f);
+	MultiExtend::Math::limit_min(m_delta, 0.05f);
 
 	GameOBJECT::Update(m_delta);
 

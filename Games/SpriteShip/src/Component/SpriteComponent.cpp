@@ -1,6 +1,6 @@
-#include "Component/SpriteComponent.h"
 
-#include "GameOBJECT.h"]
+
+#include "GameOBJECT.h"
 
 #include "SDL.h"
 
@@ -13,7 +13,7 @@ SpriteComponent::SpriteComponent(
 	Vector3 rotation,
 	int updateorder)
 	:
-	ActorComponent(renderer,tag,postion,scale,rotation,updateorder),
+	MultiExtend::ActorComponent(tag,postion,scale,rotation,updateorder),
 	m_canva_texture(nullptr),
 	m_TextureRender_h(0),
 	m_TextureRender_w(0)
@@ -65,7 +65,7 @@ void SpriteComponent::Draw()
 	ActorComponent::Draw();
 }
 
-void SpriteComponent::SetSingleTexture(SDL_Texture* texture)
+void MultiExtend::SpriteComponent::SetSingleTexture(SDL_Texture* texture)
 {
 	m_canva_texture = texture;
 

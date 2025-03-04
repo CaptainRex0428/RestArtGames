@@ -4,12 +4,12 @@
 
 Ship::Ship(SDL_Renderer* renderer, 
 	const char* tag, 
-	Vector3 position, 
-	Vector3 scale, 
-	Vector3 rotation, 
+	MultiExtend::Vector3 position,
+	MultiExtend::Vector3 scale,
+	MultiExtend::Vector3 rotation,
 	int updateorder)
 	: 
-	Actor(renderer,tag,position,scale,rotation,updateorder),
+	MultiExtend::Actor(tag,position,scale,rotation,updateorder),
 	m_animSC(nullptr)
 {
 	m_animSC = new AnimSpriteComponent(m_renderer, nullptr,"RocketComponent");

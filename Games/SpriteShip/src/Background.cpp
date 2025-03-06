@@ -27,8 +27,8 @@ BackGround::BackGround(SDL_Renderer* renderer)
 	};
 
 
-	Space->SetBGTextures(SpaceTextures);
-	Stars->SetBGTextures(StarsTextures);
+	Space->SetScrollTextures(SpaceTextures);
+	Stars->SetScrollTextures(StarsTextures);
 
 	GetActorComponentRoot()->AddChildActorComponent(Stars);
 	GetActorComponentRoot()->AddChildActorComponent(Space);

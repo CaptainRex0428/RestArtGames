@@ -7,7 +7,7 @@
 #include "Math/Math.h"
 #include "Math/Color.h"
 
-#include "GameOBJECT.h"
+#include "Object/GameState.h"
 
 #include "Ship.h"
 #include "Background.h"

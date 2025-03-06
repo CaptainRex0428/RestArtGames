@@ -2,7 +2,7 @@
 
 #include "SDL_image.h"
 
-#include "Component/AnimSpriteComponent.h"
+#include "Component/AnimateSpriteComponent.h"
 
 #include "MultiExtend.h"
 

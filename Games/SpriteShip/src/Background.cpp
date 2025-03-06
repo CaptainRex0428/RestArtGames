@@ -1,29 +1,26 @@
 #include "Background.h"
-
-#include "GameOBJECT.h"
-
 #include "SDL.h"
 
 BackGround::BackGround(SDL_Renderer* renderer)
 	:Actor("BackGround")
 {
-	Vector2 Screensize(1280.0f, 762.0f);
+	MultiExtend::Vector2 Screensize(1280.0f, 762.0f);
 
-	Stars = new BKGComponent(m_renderer, Screensize, -200, 60, "StarComponent");
-	Space = new BKGComponent(m_renderer, Screensize, -50, 50, "SpaceComponent");
+	Stars = new MultiExtend::ScrollComponent(m_renderer, Screensize, -200, 60, "StarComponent");
+	Space = new MultiExtend::ScrollComponent(m_renderer, Screensize, -50, 50, "SpaceComponent");
 	
-	std::vector<SDL_Texture*> SpaceTextures = {
-		GameOBJECT::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Farback01.png"),
-		GameOBJECT::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Farback02.png"),
-		GameOBJECT::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Farback01.png"),
-		GameOBJECT::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Farback02.png")
+	std::vector<MultiExtend::Texture*> SpaceTextures = {
+		MultiExtend::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Farback01.png"),
+		MultiExtend::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Farback02.png"),
+		MultiExtend::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Farback01.png"),
+		MultiExtend::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Farback02.png")
 	};
 
-	std::vector<SDL_Texture*> StarsTextures = {
-		GameOBJECT::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Stars.png"),
-		GameOBJECT::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Stars.png"),
-		GameOBJECT::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Stars.png"),
-		GameOBJECT::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Stars.png")
+	std::vector<MultiExtend::Texture*> StarsTextures = {
+		MultiExtend::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Stars.png"),
+		MultiExtend::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Stars.png"),
+		MultiExtend::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Stars.png"),
+		MultiExtend::LoadTexture(m_renderer,"../Games/SpriteShip/assets/Stars.png")
 	};
 
 

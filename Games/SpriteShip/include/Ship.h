@@ -2,7 +2,7 @@
 
 #include "Actor/Actor.h"
 
-#include "Component/AnimSpriteComponent.h"
+#include "Component/AnimateSpriteComponent.h"
 #include "SDL.h"
 
 #define DefaultShipTypeName "BaseShip"
@@ -20,6 +20,6 @@ public:
 	virtual ~Ship();
 
 private:
-	AnimSpriteComponent* m_animSC;
+	MultiExtend::AnimateSpriteComponent * m_animSC;
 
 };

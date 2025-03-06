@@ -2,7 +2,7 @@
 
 #include "Actor/Actor.h"
 
-#include "Component/BKGComponent.h"
+#include "Component/ScrollComponent.h"
 
 class BackGround : MultiExtend::Actor
 {
@@ -11,6 +11,6 @@ public:
 	virtual ~BackGround();
 
 private:
-	BKGComponent* Space;
-	BKGComponent* Stars;
+	MultiExtend::ScrollComponent * Space;
+	MultiExtend::ScrollComponent * Stars;
 };

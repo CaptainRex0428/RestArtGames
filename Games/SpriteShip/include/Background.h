@@ -4,10 +4,10 @@
 
 #include "Component/ScrollComponent.h"
 
-class BackGround : MultiExtend::Actor
+class BackGround : public MultiExtend::Actor
 {
 public:
-	BackGround(SDL_Renderer* renderer);
+	BackGround(MultiExtend::Renderer* renderer,MultiExtend::GameState * gmState);
 	virtual ~BackGround();
 
 private:

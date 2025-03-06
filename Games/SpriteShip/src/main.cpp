@@ -3,12 +3,12 @@
 int main(int argc, char ** argv)
 {
 	{
-		if (SpriteShip::Initialize())
+		if (SpriteShipGame::Initialize())
 		{
-			SpriteShip::Runloop();
+			SpriteShipGame::Runloop();
 		};
 
-		SpriteShip::ShutDown();
+		SpriteShipGame::ShutDown();
 	}
 	return 0;
 }

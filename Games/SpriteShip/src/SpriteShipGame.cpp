@@ -8,21 +8,24 @@
 
 #include <iostream>
 
-int SDL_SetRenderDrawColor(SDL_Renderer* render, Color& color)
+int SDL_SetRenderDrawColor(MultiExtend::Renderer * render, Color& color)
 {
-	return SDL_SetRenderDrawColor(render, color[R], color[G], color[B], color[A]);
+	return SDL_SetRenderDrawColor(render->GetRendererAs<SDL_Renderer>(), color[R], color[G], color[B], color[A]);
 }
 
-SpriteShip::SpriteShip()
+SpriteShipGame::SpriteShipGame()
 	:m_window(nullptr), m_renderer(nullptr),player(nullptr),
 	m_resolution_w(SpriteShipResolution_W), m_resolution_h(SpriteShipResolution_H),
 	m_tickcount(0), m_delta(0),
 	m_isRunning(false)
 {
 	std::cout << ProcessName << " Constructed" << std::endl;
+
+	gmState = CreateGameState<GameState>();
+	gameInstance = CreateActor<Actor>(gmState);
 }
 
-SpriteShip::~SpriteShip()
+SpriteShipGame::~SpriteShipGame()
 {
 	IMG_Quit();
 
@@ -39,19 +42,19 @@ SpriteShip::~SpriteShip()
 
 	if (m_renderer)
 	{
-		SDL_DestroyRenderer(m_renderer);
+		SDL_DestroyRenderer(m_renderer->GetRendererAs<SDL_Renderer>());
 	}
 
 	std::cout << ProcessName << " Destructed" << std::endl;
 }
 
-SpriteShip& SpriteShip::Get()
+SpriteShipGame& SpriteShipGame::Get()
 {
-	static SpriteShip instance;
+	static SpriteShipGame instance;
 	return instance;
 }
 
-bool SpriteShip::Initialize()
+bool SpriteShipGame::Initialize()
 {
 	if (!MultiExtend::Init())
 	{
@@ -68,54 +71,53 @@ bool SpriteShip::Initialize()
 		return false;
 	}
 
-	Get().m_renderer = SDL_CreateRenderer(Get().m_window, -1,
+	SDL_Renderer * renderer = SDL_CreateRenderer(Get().m_window, -1,
 		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-	if (!Get().m_renderer)
+	if (!renderer)
 	{
 		SDL_Log("SDL create renderer error:%s", SDL_GetError());
 		return false;
 	}
 
-	if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG))
-	{
-		SDL_Log("SDL init image module error:%s", SDL_GetError());
-		return false;
-	};
+	Get().m_renderer = new MultiExtend::RendererSDL(renderer);
 
 	Get().m_isRunning = true;
 
-	Get().bkg = new BackGround(Get().m_renderer);
-	Get().player = new Ship(Get().m_renderer, "RocketPlayer", Vector3(100.0f, 200.0f, 0.0f),Vector3(2.0f,2.0f,2.0f));
+	Get().bkg = CreateActor<BackGround>(Get().gmState, Get().m_renderer, Get().gmState);
+	Get().player = CreateActor<Ship>(Get().gmState, Get().gmState, Get().m_renderer, "RocketPlayer", Vector3(100.0f, 200.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f));
 
-	
+	Get().gameInstance->AddChildActor(Get().player);
+	Get().gameInstance->AddChildActor(Get().bkg);
 
 	return true;
 }
 
-void SpriteShip::Runloop()
+void SpriteShipGame::Runloop()
 {
 	while (Get().m_isRunning)
-	{
+	{	
+		MULTIEXTEND_MESSAGE_CLIENT_DEBUG("Actors Count:{}",Get().gameInstance->GetChildActors().size());
+		MULTIEXTEND_MESSAGE_CLIENT_DEBUG("Player Location:({0},{1})", Get().player->GetPosition().x, Get().player->GetPosition().y);
 		Get().ProcessInput();
 		Get().UpdateGame();
 		Get().GenerateOuput();
 	}
 }
 
-void SpriteShip::ShutDown()
+void SpriteShipGame::ShutDown()
 {
 	IMG_Quit();
 
 	SDL_DestroyWindow(Get().m_window);
-	SDL_DestroyRenderer(Get().m_renderer);
+	SDL_DestroyRenderer(Get().m_renderer->GetRendererAs<SDL_Renderer>());
 	
 	SDL_Quit();
 
 	Get().m_isRunning = false;
 }
 
-void SpriteShip::ProcessInput()
+void SpriteShipGame::ProcessInput()
 {
 	// handle events
 	SDL_Event event;
@@ -182,7 +184,7 @@ void SpriteShip::ProcessInput()
 	}
 }
 
-void SpriteShip::UpdateGame()
+void SpriteShipGame::UpdateGame()
 {
 	int ticks;
 
@@ -194,25 +196,26 @@ void SpriteShip::UpdateGame()
 
 	MultiExtend::Math::limit_min(m_delta, 0.05f);
 
-	GameOBJECT::Update(m_delta);
+	Get().gameInstance->Update(m_delta);
 
 #ifdef SpriteShipDebug
 	SDL_Log("Delta:%.3f", m_delta);
 #endif
 }
 
-void SpriteShip::GenerateOuput()
+void SpriteShipGame::GenerateOuput()
 {
 	Color bkgcolor(0.05f, 0.05f, 0.1f, 1.0f);
 	SDL_SetRenderDrawColor(m_renderer, bkgcolor);
-	SDL_RenderClear(m_renderer);
+	
+	ClearRenderer(m_renderer);
 
-	GameOBJECT::Draw();
+	Get().gameInstance->Draw();
 
-	SDL_RenderPresent(m_renderer);
+	RenderPresent(m_renderer);
 }
 
-void SpriteShip::ToggleBorder(const Uint8* state, const SDL_Scancode& key1, const SDL_Scancode& key2)
+void SpriteShipGame::ToggleBorder(const Uint8* state, const SDL_Scancode& key1, const SDL_Scancode& key2)
 {
 	if (state[key1])
 	{
@@ -239,7 +242,7 @@ void SpriteShip::ToggleBorder(const Uint8* state, const SDL_Scancode& key1, cons
 	}
 }
 
-bool SpriteShip::AssignPressedKeyTagPair(KT_pair& key)
+bool SpriteShipGame::AssignPressedKeyTagPair(KT_pair& key)
 {
 	if (std::find_if(m_pressedkey_tag.begin(), m_pressedkey_tag.end(), [key](const KT_pair& keyCheck)->bool {return key == keyCheck;}) 
 		== m_pressedkey_tag.end())
@@ -255,7 +258,7 @@ bool SpriteShip::AssignPressedKeyTagPair(KT_pair& key)
 	return false;
 }
 
-void SpriteShip::ReleasePressedKeyTagPair(const KT_pair& key)
+void SpriteShipGame::ReleasePressedKeyTagPair(const KT_pair& key)
 {
 	auto it = std::remove_if(m_pressedkey_tag.begin(), m_pressedkey_tag.end(), [key](const KT_pair& keyCheck)->bool {return key == keyCheck; });
 	

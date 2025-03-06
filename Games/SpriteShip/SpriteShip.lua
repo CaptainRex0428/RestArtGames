@@ -13,7 +13,9 @@ project "SpriteShip"
 
      "%{ProjIncludeDir.MultiExtend}",
      "%{DepIncludeDir.SDL}",
-     "%{DepIncludeDir.SDL_image}"
+     "%{DepIncludeDir.SDL_image}",
+     "%{DepIncludeDir.spdlog}",
+     "%{DepIncludeDir.cryptopp}"
    }
 
    links
@@ -21,7 +23,11 @@ project "SpriteShip"
      "MultiExtend",
      "SDL",
      "SDL_main",
-     "SDL_image"
+     "SDL_image",
+
+     "spdlog",
+     "cryptopp"
+     
    }
    
    location (LocationDir)

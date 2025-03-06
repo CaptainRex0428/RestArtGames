@@ -11,7 +11,9 @@ class Ship : public MultiExtend::Actor
 {
 
 public:
-	Ship(SDL_Renderer* renderer,
+	Ship(
+		MultiExtend::GameState * gmstate,
+		MultiExtend::Renderer* renderer,
 		const char* tag = DefaultShipTypeName,
 		MultiExtend::Vector3 position = MultiExtend::Vector3(0.0f, 0.0f, 0.0f),
 		MultiExtend::Vector3 scale = MultiExtend::Vector3(1.0f, 1.0f, 1.0f),

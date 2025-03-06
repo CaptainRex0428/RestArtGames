@@ -16,7 +16,7 @@
 
 #define SpriteShipNDebug
 
-#define ProcessName "SpriteShip"
+#define ProcessName "SpriteShipGame"
 
 #define SpriteShipResolution_W 1280
 #define SpriteShipResolution_H 762
@@ -31,20 +31,20 @@ struct KT_pair
 	bool operator==(const KT_pair other) const;
 };
 
-class SpriteShip
+class SpriteShipGame
 {
 public:
-	SpriteShip(SpriteShip&) = delete;
+	SpriteShipGame(SpriteShipGame&) = delete;
 
 	static bool Initialize();
 	static void Runloop();
 	static void ShutDown();
 
 private:
-	SpriteShip();
-	virtual ~SpriteShip();
+	SpriteShipGame();
+	virtual ~SpriteShipGame();
 
-	static SpriteShip& Get();
+	static SpriteShipGame& Get();
 
 	void ProcessInput();
 	void UpdateGame();
@@ -57,7 +57,7 @@ private:
 
 private:
 	SDL_Window* m_window;
-	SDL_Renderer* m_renderer;
+	MultiExtend::Renderer * m_renderer;
 
 	int m_resolution_w;
 	int m_resolution_h;
@@ -68,6 +68,10 @@ private:
 	bool m_isRunning;
 
 	std::vector<KT_pair> m_pressedkey_tag;
+
+	MultiExtend::Actor * gameInstance;
+
+	MultiExtend::GameState * gmState;
 
 	Ship* player;
 	BackGround* bkg;

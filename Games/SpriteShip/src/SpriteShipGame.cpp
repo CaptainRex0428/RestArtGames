@@ -1,12 +1,13 @@
 #include "SpriteShipGame.h"
 
+#include <iostream>
+
 #include "SDL_image.h"
 
-#include "Component/AnimateSpriteComponent.h"
-
 #include "MultiExtend.h"
+#include "Component/AnimateSpriteComponent.h"
+#include "Component/ScrollComponent.h"
 
-#include <iostream>
 
 int SDL_SetRenderDrawColor(MultiExtend::Renderer * render, Color& color)
 {
@@ -81,11 +82,47 @@ bool SpriteShipGame::Initialize()
 	}
 
 	Get().m_renderer = new MultiExtend::RendererSDL(renderer);
-
 	Get().m_isRunning = true;
+	
+	Get().player = CreateActor<Actor>(Get().gmState);
+	Get().player->SetUpdateOrder(100);
+	
+	std::vector<const char*> shiptextures =
+	{
+		"../Games/SpriteShip/assets/Ship01.png",
+		"../Games/SpriteShip/assets/Ship02.png",
+		"../Games/SpriteShip/assets/Ship03.png",
+		"../Games/SpriteShip/assets/Ship04.png"
+	};
+	MultiExtend::AnimateSpriteComponent* shipAnimate = new MultiExtend::AnimateSpriteComponent(10, Get().gmState, Get().m_renderer, shiptextures);
+	shipAnimate->SetSize(Vector2(64, 29));
+	Get().player->AddActorComponent(shipAnimate);
 
-	Get().bkg = CreateActor<BackGround>(Get().gmState, Get().m_renderer, Get().gmState);
-	Get().player = CreateActor<Ship>(Get().gmState, Get().gmState, Get().m_renderer, "RocketPlayer", Vector3(100.0f, 200.0f, 0.0f), Vector3(2.0f, 2.0f, 2.0f));
+	Get().bkg = CreateActor<Actor>(Get().gmState);
+	Get().bkg->SetUpdateOrder(1);
+
+	std::vector<const char*> skytextures =
+	{
+		"../Games/SpriteShip/assets/Farback01.png",
+		"../Games/SpriteShip/assets/Farback02.png"
+	};
+
+	MultiExtend::ScrollSpriteComponent* skySprite = new MultiExtend::ScrollSpriteComponent(Get().gmState, Get().m_renderer, skytextures);
+	skySprite->SetRenderSize(Vector2(SpriteShipResolution_W, SpriteShipResolution_H));
+	skySprite->SetScrollSpeed(10);
+	skySprite->SetUpdateOrder(1);
+	Get().bkg->AddActorComponent(skySprite);
+
+	std::vector<const char*> startextures =
+	{
+		"../Games/SpriteShip/assets/Stars.png"
+	};
+
+	MultiExtend::ScrollSpriteComponent* starSprite = new MultiExtend::ScrollSpriteComponent(Get().gmState, Get().m_renderer, startextures);
+	starSprite->SetRenderSize(Vector2(SpriteShipResolution_W, SpriteShipResolution_H));
+	starSprite->SetScrollSpeed(100);
+	starSprite->SetUpdateOrder(2);
+	Get().bkg->AddActorComponent(starSprite);
 
 	Get().gameInstance->AddChildActor(Get().player);
 	Get().gameInstance->AddChildActor(Get().bkg);
@@ -97,8 +134,6 @@ void SpriteShipGame::Runloop()
 {
 	while (Get().m_isRunning)
 	{	
-		MULTIEXTEND_MESSAGE_CLIENT_DEBUG("Actors Count:{}",Get().gameInstance->GetChildActors().size());
-		MULTIEXTEND_MESSAGE_CLIENT_DEBUG("Player Location:({0},{1})", Get().player->GetPosition().x, Get().player->GetPosition().y);
 		Get().ProcessInput();
 		Get().UpdateGame();
 		Get().GenerateOuput();
@@ -145,42 +180,42 @@ void SpriteShipGame::ProcessInput()
 
 	if (state[SDL_SCANCODE_W]) 
 	{
-		Vector3 location = player->GetPosition();
+		Vector3 location = player->GetPositionAbsolute();
 		float y = location.y - ShipSpeed * m_delta;
 
 		MultiExtend::Math::limit_min(y,0);
 
-		player->SetPosition(Vector3(location.x, y, location.z));
+		player->SetPositionRelative(Vector3(location.x, y, location.z));
 	}
 
 	if (state[SDL_SCANCODE_S])
 	{
-		Vector3 location = player->GetPosition();
+		Vector3 location = player->GetPositionAbsolute();
 		float y = location.y + ShipSpeed * m_delta;
 
 		MultiExtend::Math::limit_max(y, (float)m_resolution_h);
 
-		player->SetPosition(Vector3(location.x, y, location.z));
+		player->SetPositionRelative(Vector3(location.x, y, location.z));
 	}
 
 	if (state[SDL_SCANCODE_A])
 	{
-		Vector3 location = player->GetPosition();
+		Vector3 location = player->GetPositionAbsolute();
 		float x = location.x - ShipSpeed * m_delta;
 
 		MultiExtend::Math::limit_min(x, 0);
 
-		player->SetPosition(Vector3(x, location.y, location.z));
+		player->SetPositionRelative(Vector3(x, location.y, location.z));
 	}
 
 	if (state[SDL_SCANCODE_D])
 	{
-		Vector3 location = player->GetPosition();
+		Vector3 location = player->GetPositionAbsolute();
 		float x = location.x + ShipSpeed * m_delta;
 
 		MultiExtend::Math::limit_max(x, (float)m_resolution_w);
 
-		player->SetPosition(Vector3(x, location.y, location.z));
+		player->SetPositionRelative(Vector3(x, location.y, location.z));
 	}
 }
 

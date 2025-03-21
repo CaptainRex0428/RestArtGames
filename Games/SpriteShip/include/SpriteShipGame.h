@@ -9,9 +9,6 @@
 
 #include "Object/GameState.h"
 
-#include "Ship.h"
-#include "Background.h"
-
 #include <vector>
 
 #define SpriteShipNDebug
@@ -73,6 +70,6 @@ private:
 
 	MultiExtend::GameState * gmState;
 
-	Ship* player;
-	BackGround* bkg;
+	MultiExtend::Actor* player;
+	MultiExtend::Actor* bkg;
 };

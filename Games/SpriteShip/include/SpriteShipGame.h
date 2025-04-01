@@ -7,7 +7,7 @@
 #include "Math/Math.h"
 #include "Math/Color.h"
 
-#include "Object/GameState.h"
+#include "Object/GameStat.h"
 
 #include <vector>
 
@@ -68,7 +68,7 @@ private:
 
 	MultiExtend::Actor * gameInstance;
 
-	MultiExtend::GameState * gmState;
+	MultiExtend::GameStat * gmState;
 
 	MultiExtend::Actor* player;
 	MultiExtend::Actor* bkg;

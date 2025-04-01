@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "SDL.h"
 #include "SDL_image.h"
 
 #include "MultiExtend.h"
@@ -22,7 +23,7 @@ SpriteShipGame::SpriteShipGame()
 {
 	std::cout << ProcessName << " Constructed" << std::endl;
 
-	gmState = CreateGameState<GameState>();
+	gmState = CreateGameStat<GameStat>();
 	gameInstance = CreateActor<Actor>(gmState);
 }
 
@@ -286,7 +287,7 @@ bool SpriteShipGame::AssignPressedKeyTagPair(KT_pair& key)
 		return true;
 	}
 
-#ifdef SpriteShipDebug
+#ifdef DEBUG
 	std::cout << "tag count:" << m_pressedkey_tag.size() << std::endl;
 #endif
 
@@ -299,7 +300,7 @@ void SpriteShipGame::ReleasePressedKeyTagPair(const KT_pair& key)
 	
 	m_pressedkey_tag.erase(it,m_pressedkey_tag.end());
 
-#ifdef SpriteShipDebug
+#ifdef DEBUG
 	std::cout << "tag count:" << m_pressedkey_tag.size() << std::endl;
 #endif
 }
